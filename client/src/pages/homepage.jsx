@@ -16,9 +16,9 @@ function HomePage() {
             შემთხვევაში შეგიძლიათ იხილოთ დეტალური ინსტრუქცია.
           </p>
           <hr />
-          <Button variant="outline-success">
+          <Button variant="outline-success" className="w-100 btn-lg">
             <b>სწავლის დაწყება</b>
-          </Button>{" "}
+          </Button>
         </Col>
         <Col lg>
           <h1 className="h1 mb-5">რატომ უნდა ვისწავლოთ ინგლისური ენა</h1>

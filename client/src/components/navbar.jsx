@@ -20,19 +20,20 @@ function NavBar() {
     >
       <Navbar bg="magenta" className="bg-purple px-3" data-bs-theme="dark">
         <Container fluid>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="/">Vocabulary.ge</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link href="/">მთავარი</Nav.Link>
+              <Nav.Link href="words">სიტყვები</Nav.Link>
+              <Nav.Link href="app">აპლიკაცია</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
-        <Container>
-          <Nav>
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+        <Container className="bg-danger ">
+          <Nav className="position-absolute end-0 px-4">
+            <Nav.Link href="#home">შესვლა</Nav.Link>
+            <Nav.Link href="#link">რეგისტრაცია</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
