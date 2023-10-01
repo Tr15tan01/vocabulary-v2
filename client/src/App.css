@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@300&display=swap");
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  /* text-align: center; */
+  min-height: 100vh;
+  background-color: whitesmoke;
+  font-family: "Noto Serif Georgian", serif;
+}
+
+.bg-purple {
+  background-color: #25003e;
+}
