@@ -1,6 +1,6 @@
-import { React } from "react";
+import React from "react";
 
-const ThemeContext = React.createContext();
+const ThemeContext = React.createContext("light");
 
 // eslint-disable-next-line react/prop-types
 export const ThemeProvider = ({ children }) => {
