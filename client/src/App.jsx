@@ -12,7 +12,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 //componrnts
 import NavBar from "./components/navbar";
-import { AppPage, HomePage, WordsPage } from "./pages";
+import {
+  AppPage,
+  HomePage,
+  WordsPage,
+  VerbsPage,
+  VerbsTestPage,
+} from "./pages";
 import { Footer } from "./components";
 
 function App() {
@@ -24,6 +30,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/words" element={<WordsPage />} />
           <Route path="/app" element={<AppPage />} />
+          <Route path="/verbs" element={<VerbsPage />} />
+          <Route path="/verbs-test" element={<VerbsTestPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -18,7 +18,11 @@ function NavBar() {
       }}
       className="shadow-sm flex-wrap"
     >
-      <Navbar bg="magenta" className="bg-purple px-3" data-bs-theme="dark">
+      <Navbar
+        bg="magenta"
+        className="bg-purple px-3 text-light"
+        data-bs-theme="dark"
+      >
         <Container fluid>
           <Navbar.Brand href="/">Vocabulary.ge</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -27,6 +31,7 @@ function NavBar() {
               <Nav.Link href="/">მთავარი</Nav.Link>
               <Nav.Link href="words">სიტყვები</Nav.Link>
               <Nav.Link href="app">აპლიკაცია</Nav.Link>
+              <Nav.Link href="verbs">ზმნები</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
