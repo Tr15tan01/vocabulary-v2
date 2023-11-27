@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -17,7 +17,18 @@ function VerbsTestPage() {
 
   const secondFormRef = useRef(null);
   const thirdFormRef = useRef(null);
+  const wordRef = useRef(null);
+  //toast
   const notify = () => toast.success("სწორია!!!");
+
+  //functionality
+  const [number, setNumber] = useState(0);
+
+  //fade in
+  const [fade, setFade] = useState(false);
+  const handleFadeIn = () => {
+    setFade(!fade);
+  };
 
   useEffect(() => {
     secondFormRef.current.focus();
@@ -25,10 +36,20 @@ function VerbsTestPage() {
 
   const onChangeHandler = (e) => {
     console.log(e.target.value);
-    if (e.target.value === "arose") {
+    if (e.target.name === "second" && e.target.value === verbs[number].second) {
       notify();
       thirdFormRef.current.focus();
       playPing();
+    } else if (
+      e.target.name === "third" &&
+      e.target.value === verbs[number].third
+    ) {
+      notify();
+      playPing();
+      setNumber(number + 1);
+      secondFormRef.current.value = "";
+      thirdFormRef.current.value = "";
+      handleFadeIn();
     }
   };
 
@@ -58,7 +79,12 @@ function VerbsTestPage() {
               </Row>
             </Card.Header>
             <Card.Body className="text-center">
-              <Card.Title className="display-5">{verbs[0].first}</Card.Title>
+              <Card.Title
+                className={fade ? "display-5 fade-in" : "display-5"}
+                ref={wordRef}
+              >
+                {verbs[number].first}
+              </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 Card Subtitle
               </Card.Subtitle>
@@ -73,6 +99,7 @@ function VerbsTestPage() {
                     <Form.Control
                       size="lg"
                       type="text"
+                      name="second"
                       placeholder="შესაბამისი სიტყვა"
                       ref={secondFormRef}
                       autoComplete="off"
@@ -83,6 +110,7 @@ function VerbsTestPage() {
                     <Form.Control
                       size="lg"
                       type="text"
+                      name="third"
                       placeholder="შესაბამისი სიტყვა"
                       ref={thirdFormRef}
                       autoComplete="off"
@@ -95,7 +123,11 @@ function VerbsTestPage() {
                 <Button variant="success" className="p-3" onClick={notify}>
                   <b>შეამოწმე</b>
                 </Button>
-                <Button variant="warning" className="p-3">
+                <Button
+                  variant="warning"
+                  className="p-3"
+                  onClick={handleFadeIn}
+                >
                   <b>გამოტოვება</b>
                 </Button>
                 <Button variant="danger" className="p-3">

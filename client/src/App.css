@@ -23,3 +23,16 @@
 .responsive-width {
   width: 60%;
 }
+
+.fade-in {
+  animation: fadeInAnimation ease-in-out 1s;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
