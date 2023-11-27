@@ -6,10 +6,15 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { verbs } from "../utils/data";
+import useSound from "use-sound";
+import ping from "../assets/ping.mp3";
 
 import toast, { Toaster } from "react-hot-toast";
 
 function VerbsTestPage() {
+  //sound
+  const [playPing] = useSound(ping);
+
   const secondFormRef = useRef(null);
   const thirdFormRef = useRef(null);
   const notify = () => toast.success("სწორია!!!");
@@ -23,6 +28,7 @@ function VerbsTestPage() {
     if (e.target.value === "arose") {
       notify();
       thirdFormRef.current.focus();
+      playPing();
     }
   };
 
