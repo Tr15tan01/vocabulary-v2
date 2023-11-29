@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
 import { verbs } from "../utils/data";
 import useSound from "use-sound";
 import ping from "../assets/ping.mp3";
@@ -23,23 +24,26 @@ function VerbsTestPage() {
 
   //functionality
   const [number, setNumber] = useState(0);
+  const [correctAnswer, setCorrectAnswer] = useState(0);
+  const [incorrectAnswer, setIncorrectAnswer] = useState(0);
 
   //fade in
   const [fade, setFade] = useState(false);
   const handleFadeIn = () => {
-    setFade(!fade);
+    setFade(true);
   };
 
   useEffect(() => {
     secondFormRef.current.focus();
-  });
+  }, []);
 
   const onChangeHandler = (e) => {
     console.log(e.target.value);
     if (e.target.name === "second" && e.target.value === verbs[number].second) {
-      notify();
       thirdFormRef.current.focus();
+      notify();
       playPing();
+      setCorrectAnswer(correctAnswer + 1);
     } else if (
       e.target.name === "third" &&
       e.target.value === verbs[number].third
@@ -50,6 +54,7 @@ function VerbsTestPage() {
       secondFormRef.current.value = "";
       thirdFormRef.current.value = "";
       handleFadeIn();
+      secondFormRef.current.focus();
     }
   };
 
@@ -70,12 +75,27 @@ function VerbsTestPage() {
               className="bg-primary text-light p-1"
               // style={{ height: "120px" }}
             >
-              <Row className="text-center">
-                <div className="text-light">სწორი პასუხი: 3</div>
-                <div className="text-light">არა სწორი პასუხი: 3</div>
-                <div className="text-light">
-                  <h3>3/120</h3>{" "}
-                </div>
+              <Row className="text-center m-0 p-0">
+                <Col className="text-light p-1">
+                  <p className="h4">
+                    სწორი პასუხი:
+                    <Badge bg="success" className="p-2 m-1">
+                      {" "}
+                      {correctAnswer}
+                    </Badge>
+                  </p>
+                </Col>
+                <Col className="text-light p-1">
+                  <p className="h4">
+                    არასწორი პასუხი:{" "}
+                    <Badge bg="danger">{incorrectAnswer}</Badge>
+                  </p>
+                </Col>
+                <Col className="text-light  p-1">
+                  <h3>
+                    <Badge bg="danger">3/120</Badge>
+                  </h3>{" "}
+                </Col>
               </Row>
             </Card.Header>
             <Card.Body className="text-center">
@@ -104,6 +124,7 @@ function VerbsTestPage() {
                       ref={secondFormRef}
                       autoComplete="off"
                       onChange={onChangeHandler}
+                      onFocus={() => console.log("second focused")}
                     />
                   </Col>
                   <Col className="col-md">
@@ -130,7 +151,11 @@ function VerbsTestPage() {
                 >
                   <b>გამოტოვება</b>
                 </Button>
-                <Button variant="danger" className="p-3">
+                <Button
+                  variant="danger"
+                  className="p-3"
+                  onClick={() => setFade(false)}
+                >
                   <b>ტესტის შეჩერება</b>
                 </Button>
               </Row>
