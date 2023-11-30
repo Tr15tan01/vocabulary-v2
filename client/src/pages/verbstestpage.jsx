@@ -21,6 +21,7 @@ function VerbsTestPage() {
   const wordRef = useRef(null);
   //toast
   const notify = () => toast.success("სწორია!!!");
+  const alertify = () => toast.error("არასწორი პასუხი");
 
   //functionality
   const [number, setNumber] = useState(0);
@@ -38,7 +39,7 @@ function VerbsTestPage() {
   }, []);
 
   const onChangeHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if (e.target.name === "second" && e.target.value === verbs[number].second) {
       thirdFormRef.current.focus();
       notify();
@@ -51,11 +52,37 @@ function VerbsTestPage() {
       notify();
       playPing();
       setNumber(number + 1);
-      secondFormRef.current.value = "";
-      thirdFormRef.current.value = "";
+      setCorrectAnswer(correctAnswer + 1);
+      clearFields();
       handleFadeIn();
       secondFormRef.current.focus();
     }
+  };
+
+  //check answers
+  const checkAnswers = () => {
+    if (
+      secondFormRef.current.value !== verbs[number].second ||
+      thirdFormRef.current.value !== verbs[number].third
+    ) {
+      setIncorrectAnswer(incorrectAnswer + 1);
+      secondFormRef.current.value = verbs[number].second;
+      thirdFormRef.current.value = verbs[number].third;
+      // alertify();
+    }
+  };
+
+  //ommit word
+  const ommitWord = () => {
+    setNumber(number + 1);
+    clearFields();
+    secondFormRef.current.focus();
+  };
+
+  //clear all fielsds
+  const clearFields = () => {
+    secondFormRef.current.value = "";
+    thirdFormRef.current.value = "";
   };
 
   return (
@@ -93,7 +120,7 @@ function VerbsTestPage() {
                 </Col>
                 <Col className="text-light  p-1">
                   <h3>
-                    <Badge bg="danger">3/120</Badge>
+                    <Badge bg="danger">{number + 1}/120</Badge>
                   </h3>{" "}
                 </Col>
               </Row>
@@ -103,7 +130,7 @@ function VerbsTestPage() {
                 className={fade ? "display-5 fade-in" : "display-5"}
                 ref={wordRef}
               >
-                {verbs[number].first}
+                {verbs[number].first} - {verbs[number].geo}
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 Card Subtitle
@@ -124,7 +151,6 @@ function VerbsTestPage() {
                       ref={secondFormRef}
                       autoComplete="off"
                       onChange={onChangeHandler}
-                      onFocus={() => console.log("second focused")}
                     />
                   </Col>
                   <Col className="col-md">
@@ -140,25 +166,29 @@ function VerbsTestPage() {
                   </Col>
                 </Row>
               </Form>
-              <Row className="g-2">
-                <Button variant="success" className="p-3" onClick={notify}>
-                  <b>შეამოწმე</b>
-                </Button>
-                <Button
-                  variant="warning"
-                  className="p-3"
-                  onClick={handleFadeIn}
-                >
-                  <b>გამოტოვება</b>
-                </Button>
-                <Button
-                  variant="danger"
-                  className="p-3"
-                  onClick={() => setFade(false)}
-                >
-                  <b>ტესტის შეჩერება</b>
-                </Button>
-              </Row>
+              {/* <Row className="g-2"> */}
+              <Button
+                variant="success"
+                className="px-3 mx-3"
+                onClick={checkAnswers}
+              >
+                <b>შეამოწმე</b>
+              </Button>
+              <Button
+                variant="warning"
+                className="px-3 mx-3"
+                onClick={ommitWord}
+              >
+                <b>შემდეგი</b>
+              </Button>
+              <Button
+                variant="danger"
+                className="px-3 mx-3"
+                onClick={() => setFade(false)}
+              >
+                <b>ტესტის შეჩერება</b>
+              </Button>
+              {/* </Row> */}
             </Card.Body>
             <Card.Footer className="bg-primary text-light text-center">
               2 days ago
