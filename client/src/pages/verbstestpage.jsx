@@ -9,6 +9,8 @@ import Badge from "react-bootstrap/Badge";
 import { verbs } from "../utils/data";
 import useSound from "use-sound";
 import ping from "../assets/ping.mp3";
+import { useNavigate } from "react-router-dom";
+import { ConfirmationModal } from "../components/modal";
 
 import toast, { Toaster } from "react-hot-toast";
 
@@ -21,7 +23,19 @@ function VerbsTestPage() {
   const wordRef = useRef(null);
   //toast
   const notify = () => toast.success("სწორია!!!");
-  const alertify = () => toast.error("არასწორი პასუხი");
+  // const alertify = () => toast.error("არასწორი პასუხი");
+
+  //modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate("/verbs");
+    handleClose();
+  };
+
+  const [test, setTest] = useState(false);
 
   //functionality
   const [number, setNumber] = useState(0);
@@ -112,15 +126,12 @@ function VerbsTestPage() {
                     </Badge>
                   </p>
                 </Col>
-                <Col className="text-light p-1">
-                  <p className="h4">
-                    არასწორი პასუხი:{" "}
-                    <Badge bg="danger">{incorrectAnswer}</Badge>
-                  </p>
-                </Col>
+
                 <Col className="text-light  p-1">
                   <h3>
-                    <Badge bg="danger">{number + 1}/120</Badge>
+                    <Badge bg="danger">
+                      {number + 1}/{verbs.length}
+                    </Badge>
                   </h3>{" "}
                 </Col>
               </Row>
@@ -130,7 +141,8 @@ function VerbsTestPage() {
                 className={fade ? "display-5 fade-in" : "display-5"}
                 ref={wordRef}
               >
-                {verbs[number].first} - {verbs[number].geo}
+                {verbs[number].first} -{" "}
+                <span className="display-6">{verbs[number].geo}</span>
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 Card Subtitle
@@ -144,51 +156,61 @@ function VerbsTestPage() {
                   {/* <Form.Label>Email address</Form.Label> */}
                   <Col className="col-md">
                     <Form.Control
-                      size="lg"
+                      size="md"
                       type="text"
                       name="second"
                       placeholder="შესაბამისი სიტყვა"
                       ref={secondFormRef}
                       autoComplete="off"
                       onChange={onChangeHandler}
+                      className="is-valid"
                     />
                   </Col>
                   <Col className="col-md">
                     <Form.Control
-                      size="lg"
+                      size="md"
                       type="text"
                       name="third"
                       placeholder="შესაბამისი სიტყვა"
                       ref={thirdFormRef}
                       autoComplete="off"
                       onChange={onChangeHandler}
+                      className="is-invalid"
                     />
                   </Col>
                 </Row>
               </Form>
-              {/* <Row className="g-2"> */}
-              <Button
-                variant="success"
-                className="px-3 mx-3"
-                onClick={checkAnswers}
-              >
-                <b>შეამოწმე</b>
-              </Button>
-              <Button
-                variant="warning"
-                className="px-3 mx-3"
-                onClick={ommitWord}
-              >
-                <b>შემდეგი</b>
-              </Button>
-              <Button
-                variant="danger"
-                className="px-3 mx-3"
-                onClick={() => setFade(false)}
-              >
-                <b>ტესტის შეჩერება</b>
-              </Button>
-              {/* </Row> */}
+              <div className="g-2">
+                <Button
+                  variant="success"
+                  className="px-5 m-1"
+                  onClick={checkAnswers}
+                >
+                  <b>შეამოწმე</b>
+                </Button>
+                <Button
+                  variant="warning"
+                  className="px-3  m-1"
+                  onClick={ommitWord}
+                >
+                  <b>გამოტოვება</b>
+                </Button>
+                <Button
+                  variant="danger"
+                  className="px-3 m-1"
+                  onClick={handleShow}
+                >
+                  <b>ტესტის შეჩერება</b>
+                </Button>
+              </div>
+              <ConfirmationModal
+                show={show}
+                handleClose={handleClose}
+                handleShow={handleShow}
+                handleNavigate={handleNavigate}
+                confirmationText="ტესტის შეჩერება"
+                rejectionText="ტესტზე დაბრუნება"
+              />
             </Card.Body>
             <Card.Footer className="bg-primary text-light text-center">
               2 days ago
