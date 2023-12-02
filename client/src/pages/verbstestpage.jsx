@@ -17,6 +17,7 @@ import toast, { Toaster } from "react-hot-toast";
 function VerbsTestPage() {
   //sound
   const [playPing] = useSound(ping);
+  const [soundOn, setSoundOn] = useState(true);
 
   const secondFormRef = useRef(null);
   const thirdFormRef = useRef(null);
@@ -35,12 +36,20 @@ function VerbsTestPage() {
     handleClose();
   };
 
-  const [test, setTest] = useState(false);
+  //keep track of shown items
+  const [shownItems, setShownItems] = useState([]);
+  console.log(shownItems, "shown items");
 
   //functionality
-  const [number, setNumber] = useState(0);
+  const randomNumber = () => {
+    const randomNumber = Math.floor(Math.random() * verbs.length);
+    setShownItems((current) => [...current, randomNumber]);
+    return randomNumber;
+  };
+
+  const [number, setNumber] = useState(randomNumber);
   const [correctAnswer, setCorrectAnswer] = useState(0);
-  const [incorrectAnswer, setIncorrectAnswer] = useState(0);
+  // const [incorrectAnswer, setIncorrectAnswer] = useState(0);
 
   //fade in
   const [fade, setFade] = useState(false);
@@ -57,7 +66,8 @@ function VerbsTestPage() {
 
   const nextWord = () => {
     if (number < verbs.length - 1) {
-      setNumber(number + 1);
+      // setNumber(number + 1);
+      setNumber(randomNumber());
       clearFields();
       handleFadeIn();
       secondFormRef.current.focus();
@@ -68,20 +78,26 @@ function VerbsTestPage() {
     }
   };
 
+  //toggle sound
+  const toggleSound = () => {
+    setSoundOn(!soundOn);
+    secondFormRef.current.focus();
+  };
+
   const onChangeHandler = (e) => {
     // console.log(e.target.value);
     if (e.target.name === "second" && e.target.value === verbs[number].second) {
       secondFormRef.current.classList.add("is-valid");
       thirdFormRef.current.focus();
       notify();
-      playPing();
+      soundOn && playPing();
       setCorrectAnswer(correctAnswer + 1);
     } else if (
       e.target.name === "third" &&
       e.target.value === verbs[number].third
     ) {
       notify();
-      playPing();
+      soundOn && playPing();
       thirdFormRef.current.classList.add("is-valid");
       // setNumber(number + 1);
       setCorrectAnswer(correctAnswer + 1);
@@ -152,7 +168,9 @@ function VerbsTestPage() {
                 </Col>
 
                 <Col className="text-light p-1">
-                  <Button variant="secondary">ხმის ჩართვა</Button>
+                  <Button variant="secondary" onClick={toggleSound}>
+                    {soundOn ? "ხმის გამორთვა" : "ხმის ჩართვა"}
+                  </Button>
                 </Col>
 
                 <Col className="text-light  p-1">
