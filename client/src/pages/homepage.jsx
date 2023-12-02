@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 function HomePage() {
   return (
-    <Container fluid style={{}} className="p-5">
+    <Container fluid style={{}} className="p-5 page">
       <Row lg>
         <Col lg className="mb-5">
           <h1 className="h1 mb-5">ვისწავლოთ ინგლისური სიტყვები</h1>

@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 function WordsPage() {
   return (
-    <Container fluid style={{ minHeight: "90vh" }} className="p-5">
+    <Container fluid style={{ minHeight: "90vh" }} className="p-5 page">
       <Row lg>
         <Col lg className="mb-5">
           <h1 className="h1 mb-5">500 ინგლისური სიტყვა</h1>

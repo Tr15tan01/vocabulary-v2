@@ -25,14 +25,31 @@
 }
 
 .fade-in {
-  animation: fadeInAnimation ease-in-out 1s;
+  animation: fadeInAnimation ease-in-out 0.3s;
+}
+
+.page {
+  animation: fade-in 0.3s ease-in-out;
 }
 
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
+    transform: translateX(-24px);
   }
   100% {
     opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

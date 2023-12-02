@@ -46,15 +46,32 @@ function VerbsTestPage() {
   const [fade, setFade] = useState(false);
   const handleFadeIn = () => {
     setFade(true);
+    setTimeout(() => {
+      setFade(false);
+    }, 1000);
   };
 
   useEffect(() => {
     secondFormRef.current.focus();
   }, []);
 
+  const nextWord = () => {
+    if (number < verbs.length - 1) {
+      setNumber(number + 1);
+      clearFields();
+      handleFadeIn();
+      secondFormRef.current.focus();
+      secondFormRef.current.classList.remove("is-valid");
+      thirdFormRef.current.classList.remove("is-valid");
+    } else {
+      console.log("end");
+    }
+  };
+
   const onChangeHandler = (e) => {
     // console.log(e.target.value);
     if (e.target.name === "second" && e.target.value === verbs[number].second) {
+      secondFormRef.current.classList.add("is-valid");
       thirdFormRef.current.focus();
       notify();
       playPing();
@@ -65,11 +82,15 @@ function VerbsTestPage() {
     ) {
       notify();
       playPing();
-      setNumber(number + 1);
+      thirdFormRef.current.classList.add("is-valid");
+      // setNumber(number + 1);
       setCorrectAnswer(correctAnswer + 1);
-      clearFields();
-      handleFadeIn();
-      secondFormRef.current.focus();
+      // clearFields();
+      // handleFadeIn();
+      // secondFormRef.current.focus();
+      setTimeout(() => {
+        nextWord();
+      }, 1000);
     }
   };
 
@@ -79,10 +100,11 @@ function VerbsTestPage() {
       secondFormRef.current.value !== verbs[number].second ||
       thirdFormRef.current.value !== verbs[number].third
     ) {
-      setIncorrectAnswer(incorrectAnswer + 1);
       secondFormRef.current.value = verbs[number].second;
       thirdFormRef.current.value = verbs[number].third;
-      // alertify();
+      setTimeout(() => {
+        nextWord();
+      }, 1500);
     }
   };
 
@@ -100,7 +122,7 @@ function VerbsTestPage() {
   };
 
   return (
-    <Container style={{ minHeight: "90vh" }} className="mt-3">
+    <Container style={{ minHeight: "90vh" }} className="mt-3 page">
       <Row>
         <Col className="col-md">
           <Card
@@ -113,18 +135,24 @@ function VerbsTestPage() {
             className="shadow-lg mb-3"
           >
             <Card.Header
-              className="bg-primary text-light p-1"
+              className="bg-dark bg-gradient text-light p-1"
               // style={{ height: "120px" }}
             >
               <Row className="text-center m-0 p-0">
                 <Col className="text-light p-1">
-                  <p className="h4">
-                    სწორი პასუხი:
-                    <Badge bg="success" className="p-2 m-1">
-                      {" "}
-                      {correctAnswer}
-                    </Badge>
-                  </p>
+                  <div className="bg-secondary bg-gradient">
+                    <p className="h4">
+                      სწორი პასუხი:
+                      <Badge bg="success" className="p-2 m-1">
+                        {" "}
+                        {correctAnswer}
+                      </Badge>
+                    </p>
+                  </div>
+                </Col>
+
+                <Col className="text-light p-1">
+                  <Button variant="secondary">ხმის ჩართვა</Button>
                 </Col>
 
                 <Col className="text-light  p-1">
@@ -163,7 +191,7 @@ function VerbsTestPage() {
                       ref={secondFormRef}
                       autoComplete="off"
                       onChange={onChangeHandler}
-                      className="is-valid"
+                      // className="is-valid"
                     />
                   </Col>
                   <Col className="col-md">
@@ -175,7 +203,6 @@ function VerbsTestPage() {
                       ref={thirdFormRef}
                       autoComplete="off"
                       onChange={onChangeHandler}
-                      className="is-invalid"
                     />
                   </Col>
                 </Row>
@@ -190,7 +217,7 @@ function VerbsTestPage() {
                 </Button>
                 <Button
                   variant="warning"
-                  className="px-3  m-1"
+                  className="px-4   m-1"
                   onClick={ommitWord}
                 >
                   <b>გამოტოვება</b>
@@ -212,7 +239,7 @@ function VerbsTestPage() {
                 rejectionText="ტესტზე დაბრუნება"
               />
             </Card.Body>
-            <Card.Footer className="bg-primary text-light text-center">
+            <Card.Footer className="bg-primary bg-gradient text-light text-center">
               2 days ago
             </Card.Footer>
           </Card>

@@ -7,7 +7,7 @@ import { verbs } from "../utils/data";
 import { Link } from "react-router-dom";
 function VerbsPage() {
   return (
-    <Container fluid style={{ minHeight: "190vh" }} className="p-5">
+    <Container fluid style={{ minHeight: "190vh" }} className="p-5 page">
       <Row lg>
         <Col lg className="mb-5">
           <h1 className="h2 mb-5">ინგლისური არაწესიერი ზმნების ჩამონათვალი</h1>
