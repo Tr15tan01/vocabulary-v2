@@ -32,6 +32,7 @@ function NavBar() {
               <Nav.Link href="words">სიტყვები</Nav.Link>
               <Nav.Link href="app">აპლიკაცია</Nav.Link>
               <Nav.Link href="verbs">ზმნები</Nav.Link>
+              <Nav.Link href="sound">ხმა</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
