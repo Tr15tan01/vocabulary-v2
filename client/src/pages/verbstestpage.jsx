@@ -156,7 +156,7 @@ function VerbsTestPage() {
             >
               <Row className="text-center m-0 p-0">
                 <Col className="text-light p-1">
-                  <div className="bg-secondary bg-gradient">
+                  <div className="bg-secondary bg-gradient rounded">
                     <p className="h4">
                       სწორი პასუხი:
                       <Badge bg="success" className="p-2 m-1">
@@ -228,21 +228,21 @@ function VerbsTestPage() {
               <div className="g-2">
                 <Button
                   variant="success"
-                  className="px-5 m-1"
+                  className="px-5 m-1 shadow-sm"
                   onClick={checkAnswers}
                 >
                   <b>შეამოწმე</b>
                 </Button>
                 <Button
                   variant="warning"
-                  className="px-4   m-1"
+                  className="px-4 m-1 shadow-sm"
                   onClick={ommitWord}
                 >
                   <b>გამოტოვება</b>
                 </Button>
                 <Button
                   variant="danger"
-                  className="px-3 m-1"
+                  className="px-3 m-1 shadow-sm"
                   onClick={handleShow}
                 >
                   <b>ტესტის შეჩერება</b>
