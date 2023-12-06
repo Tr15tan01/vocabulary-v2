@@ -3,14 +3,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
+import data from "../utils/words.json";
+
 function WordsPage() {
+  console.log(data[0]);
   return (
     <Container fluid style={{ minHeight: "90vh" }} className="p-5 page">
       <Row lg>
         <Col lg className="mb-5">
           <h1 className="h1 mb-5">500 ინგლისური სიტყვა</h1>
 
-          <Table striped bordered hover size="sm">
+          {/* <Table striped bordered hover size="sm">
             <thead>
               <tr>
                 <th>#</th>
@@ -38,11 +41,33 @@ function WordsPage() {
                 <td>@twitter</td>
               </tr>
             </tbody>
-          </Table>
+          </Table> */}
           <hr />
           <Button variant="outline-success" className="w-100 btn-lg">
             <b>სწავლის დაწყება</b>
           </Button>
+          <Table bordered hover size="sm">
+            <thead className="bg-dark">
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+              </tr>
+            </thead>
+            {/* put data in the table and iterate */}
+            {data.map((word, idx) => {
+              console.log(idx % 2);
+              return (
+                <tbody key={idx}>
+                  <tr className="bg-info">
+                    <td className="bg-info">{word.ID}</td>
+                    <td className="bg-secondary">{word.eng}</td>
+                    <td>{word.geo}</td>
+                  </tr>
+                </tbody>
+              );
+            })}
+          </Table>
         </Col>
         <Col lg>
           <p>
