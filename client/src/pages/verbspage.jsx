@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { verbs } from "../utils/data";
 import { Link } from "react-router-dom";
+import { MainButton } from "../components";
+
 function VerbsPage() {
   return (
     <Container fluid style={{ minHeight: "190vh" }} className="p-5 page">
@@ -12,9 +14,10 @@ function VerbsPage() {
         <Col lg className="mb-5">
           <h1 className="h2 mb-5">ინგლისური არაწესიერი ზმნების ჩამონათვალი</h1>
           <Link to="/verbs-test">
-            <Button variant="primary" className="w-100 btn-md">
+            {/* <Button variant="primary" className="w-100 btn-md">
               <b>სწავლის დაწყება</b>
-            </Button>
+            </Button> */}
+            <MainButton buttonText="სწავლის დაწყება" />
           </Link>
           <hr />
 
@@ -43,9 +46,10 @@ function VerbsPage() {
             </tbody>
           </Table>
           <hr />
-          <Button variant="primary" className="w-100 btn-md">
+          {/* <Button variant="primary" className="w-100 btn-md">
             <b>სწავლის დაწყება</b>
-          </Button>
+          </Button> */}
+          <MainButton buttonText="სწავლის დაწყება" />
         </Col>
         <Col lg>
           <p>

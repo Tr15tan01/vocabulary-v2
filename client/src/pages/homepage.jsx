@@ -1,7 +1,9 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
+import { MainButton } from "../components";
+
 function HomePage() {
   return (
     <Container fluid style={{}} className="p-5 page">
@@ -16,9 +18,10 @@ function HomePage() {
             შემთხვევაში შეგიძლიათ იხილოთ დეტალური ინსტრუქცია.
           </p>
           <hr />
-          <Button variant="outline-success" className="w-100 btn-lg">
+          {/* <Button variant="outline-success" className="w-100 btn-lg">
             <b>სწავლის დაწყება</b>
-          </Button>
+          </Button> */}
+          <MainButton buttonText="სწავლის დაწყება" />
         </Col>
         <Col lg>
           <h1 className="h1 mb-5">რატომ უნდა ვისწავლოთ ინგლისური ენა</h1>
