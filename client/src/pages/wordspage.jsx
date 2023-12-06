@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import data from "../utils/words.json";
+import { PaginationComponent } from "../components";
 
 function WordsPage() {
   console.log(data[0]);
@@ -13,61 +14,29 @@ function WordsPage() {
         <Col lg className="mb-5">
           <h1 className="h1 mb-5">500 ინგლისური სიტყვა</h1>
 
-          {/* <Table striped bordered hover size="sm">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td colSpan={2}>Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </Table> */}
-          <hr />
-          <Button variant="outline-success" className="w-100 btn-lg">
-            <b>სწავლის დაწყება</b>
-          </Button>
-          <Table bordered hover size="sm">
-            <thead className="bg-dark">
-              <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+          <Table bordered striped hover size="md" className="shadow-sm rounded">
+            <thead className="rounded">
+              <tr className="bg-purple rounded">
+                <th className="bg-purple text-light">#</th>
+                <th className="bg-purple text-light">ინგლისურად</th>
+                <th className="bg-purple text-light">ქართულად</th>
               </tr>
             </thead>
             {/* put data in the table and iterate */}
-            {data.map((word, idx) => {
-              console.log(idx % 2);
-              return (
-                <tbody key={idx}>
-                  <tr className="bg-info">
-                    <td className="bg-info">{word.ID}</td>
-                    <td className="bg-secondary">{word.eng}</td>
-                    <td>{word.geo}</td>
-                  </tr>
-                </tbody>
-              );
-            })}
+            <tbody>
+              {data.map((word, idx) => {
+                if (idx < 10)
+                  return (
+                    <tr key={idx}>
+                      <td>{word.ID}</td>
+                      <td>{word.eng}</td>
+                      <td>{word.geo}</td>
+                    </tr>
+                  );
+              })}
+            </tbody>
           </Table>
+          <PaginationComponent />
         </Col>
         <Col lg>
           <p>
@@ -79,7 +48,7 @@ function WordsPage() {
             გასართობი იქნება მათთვის, ვინც უკვე ფლობს ამ ენას.
           </p>
           <hr />
-          <Button variant="outline-success" className="w-100 btn-lg">
+          <Button variant="primary" className="w-100 btn-md shadow-sm mb-3">
             <b>სწავლის დაწყება</b>
           </Button>
           <p>

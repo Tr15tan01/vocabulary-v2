@@ -12,7 +12,7 @@ function VerbsPage() {
         <Col lg className="mb-5">
           <h1 className="h2 mb-5">ინგლისური არაწესიერი ზმნების ჩამონათვალი</h1>
           <Link to="/verbs-test">
-            <Button variant="success" className="w-100 btn-lg">
+            <Button variant="primary" className="w-100 btn-md">
               <b>სწავლის დაწყება</b>
             </Button>
           </Link>
@@ -43,7 +43,7 @@ function VerbsPage() {
             </tbody>
           </Table>
           <hr />
-          <Button variant="success" className="w-100 btn-lg">
+          <Button variant="primary" className="w-100 btn-md">
             <b>სწავლის დაწყება</b>
           </Button>
         </Col>
@@ -57,7 +57,7 @@ function VerbsPage() {
             გასართობი იქნება მათთვის, ვინც უკვე ფლობს ამ ენას.
           </p>
           <hr />
-          <Button variant="success" className="w-100 btn-lg">
+          <Button variant="primary" className="w-100 btn-md mb-3">
             <b>სწავლის დაწყება</b>
           </Button>
           <p>

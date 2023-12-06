@@ -11,7 +11,16 @@
 }
 
 .bg-purple {
-  background-color: #25003e;
+  /* background-color: #25003e; */
+  background-image: linear-gradient(rgb(70, 12, 82), rgb(91, 22, 102));
+}
+
+.btn-primary {
+  background-color: blueviolet;
+}
+
+.btn-primary:hover {
+  background-color: darkmagenta;
 }
 
 .full-width {

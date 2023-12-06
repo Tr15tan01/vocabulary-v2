@@ -8,7 +8,7 @@ function OffcanvasExample() {
     <>
       <Navbar
         expand="md"
-        className="bg-body-tertiary mb-3"
+        className="bg-body-tertiary bg-purple text-light mb-3"
         data-bs-theme="dark"
       >
         <Container fluid>
