@@ -21,7 +21,6 @@ import {
   SoundPage,
 } from "./pages";
 import { Footer } from "./components";
-import OffcanvasExample from "./pages/offcanvas";
 
 function App() {
   return (
@@ -35,7 +34,6 @@ function App() {
           <Route path="/verbs" element={<VerbsPage />} />
           <Route path="/verbs-test" element={<VerbsTestPage />} />
           <Route path="/sound" element={<SoundPage />} />
-          <Route path="/s" element={<OffcanvasExample />} />
           <Route path="*" element={<SoundPage />} />
         </Routes>
         <Footer />
